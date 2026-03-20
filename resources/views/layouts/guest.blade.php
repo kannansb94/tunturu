@@ -14,28 +14,7 @@
         rel="stylesheet" />
 
     <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#64b5f6",
-                        "primary-hover": "#42a5f5",
-                        "background-light": "#f0f2f5",
-                        "background-dark": "#0a192f",
-                        "surface-dark": "#172a45",
-                        "muted-teal": "#4db6ac",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "sans": ["Manrope", "sans-serif"], // Override default sans
-                    },
-                },
-            },
-        }
-    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans text-gray-900 antialiased">

@@ -172,7 +172,8 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                            @forelse($books as $book)
+                            @if($books->count() > 0)
+                                @foreach($books as $book)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
                                     <td class="px-4 py-4">
                                         <input type="checkbox" class="book-checkbox w-4 h-4 text-purple-600 bg-white border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="{{ $book->id }}" data-has-active-rentals="{{ \App\Models\Rental::where('book_id', $book->id)->where('status', 'active')->exists() ? 'true' : 'false' }}">
@@ -275,7 +276,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
+                                @endforeach
+                            @else
                                 <tr>
                                     <td colspan="7" class="px-6 py-12 text-center">
                                         <div class="flex flex-col items-center justify-center">
@@ -289,7 +291,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforelse
+                            @endif
                         </tbody>
                     </table>
                 </div>

@@ -74,21 +74,21 @@
     </style>
 </head>
 
-<body class="bg-background-dark text-white font-display antialiased">
+<body class="bg-lib-bg-dark text-white font-display antialiased">
     <!-- Top Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
         <div class="max-w-full px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-8">
                     <a href="{{ url('/') }}" class="flex items-center gap-2">
-                        <x-application-logo class="flex items-center justify-center text-primary" />
+                        <x-application-logo class="flex items-center justify-center text-lib-primary" />
                     </a>
                     <div class="hidden md:flex items-center gap-6">
                         <a class="text-gray-400 hover:text-white text-sm font-semibold transition-colors"
                             href="{{ url('/') }}#mission">About</a>
                         <a class="text-gray-400 hover:text-white text-sm font-semibold transition-colors"
                             href="{{ url('/') }}#focus">Focus</a>
-                        <a class="text-primary font-bold text-sm" href="{{ route('library.index') }}">Library</a>
+                        <a class="text-lib-primary font-bold text-sm" href="{{ route('library.index') }}">Library</a>
                         <a class="text-gray-400 hover:text-white text-sm font-semibold transition-colors"
                             href="{{ url('/') }}#news">News</a>
                     </div>
@@ -100,7 +100,7 @@
                         <span
                             class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">search</span>
                         <input type="text" id="topSearch" placeholder="Search books, authors, categories..."
-                            class="w-full pl-12 pr-4 py-2.5 bg-surface-dark text-white placeholder-gray-400 rounded-xl border border-white/10 focus:border-primary/50 focus:outline-none text-sm transition-all" />
+                            class="w-full pl-12 pr-4 py-2.5 bg-lib-surf-dark text-white placeholder-gray-400 rounded-xl border border-white/10 focus:border-lib-primary/50 focus:outline-none text-sm transition-all" />
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@
                                 @endphp
                                 @if($cartCount > 0)
                                     <span
-                                        class="absolute top-0 right-0 h-4 w-4 bg-primary text-[10px] font-bold text-white flex items-center justify-center rounded-full">{{ $cartCount }}</span>
+                                        class="absolute top-0 right-0 h-4 w-4 bg-lib-primary text-[10px] font-bold text-white flex items-center justify-center rounded-full">{{ $cartCount }}</span>
                                 @endif
                             </a>
                             <a href="{{ url('/dashboard') }}"
@@ -125,7 +125,7 @@
                                 class="text-sm text-gray-400 font-semibold hover:text-white transition-colors">Log in</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
-                                    class="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white text-sm font-bold rounded-xl hover:shadow-lg hover:shadow-primary/30 transition-all">Register</a>
+                                    class="px-4 py-2 bg-gradient-to-r from-lib-primary to-lib-secondary text-white text-sm font-bold rounded-xl hover:shadow-lg hover:shadow-lib-primary/30 transition-all">Register</a>
                             @endif
                         @endauth
                     @endif
@@ -134,12 +134,12 @@
         </div>
     </nav>
 
-    <div class="min-h-screen bg-background-dark text-white font-display antialiased py-24">
+    <div class="min-h-screen bg-lib-bg-dark text-white font-display antialiased py-24">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
             <!-- Breadcrumb -->
             <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8">
-                <a href="{{ route('library.index') }}" class="hover:text-primary transition-colors">Library</a>
+                <a href="{{ route('library.index') }}" class="hover:text-lib-primary transition-colors">Library</a>
                 <span class="material-symbols-outlined text-sm">chevron_right</span>
                 <span class="text-white font-semibold">{{ $book->title }}</span>
             </nav>
@@ -148,13 +148,13 @@
                 <!-- Left Column: Image -->
                 <div class="lg:col-span-4 space-y-6">
                     <div
-                        class="aspect-[3/4] rounded-2xl overflow-hidden bg-surface-dark border border-white/10 relative group">
+                        class="aspect-[3/4] rounded-2xl overflow-hidden bg-lib-surf-dark border border-white/10 relative group">
                         @if($book->cover_image)
                             <img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         @else
                             <div class="w-full h-full flex flex-col items-center justify-center text-gray-600">
-                                <span class="material-symbols-outlined text-8xl mb-4 text-primary">auto_stories</span>
+                                <span class="material-symbols-outlined text-8xl mb-4 text-lib-primary">auto_stories</span>
                                 <span
                                     class="text-sm uppercase tracking-widest opacity-60 font-bold">{{ $book->category ?? 'Book' }}</span>
                             </div>
@@ -165,7 +165,7 @@
                         <div class="grid grid-cols-4 gap-4">
                             @foreach($book->images as $image)
                                 <div
-                                    class="aspect-square rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:border-primary transition-colors">
+                                    class="aspect-square rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:border-lib-primary transition-colors">
                                     <img src="{{ asset('storage/' . $image->image_path) }}" alt="Gallery"
                                         class="w-full h-full object-cover">
                                 </div>
@@ -179,7 +179,7 @@
                     <div>
                         <div class="flex items-center gap-4 mb-4">
                             <span
-                                class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider rounded-full border border-primary/20">
+                                class="px-3 py-1 bg-lib-primary/10 text-lib-primary text-xs font-bold uppercase tracking-wider rounded-full border border-lib-primary/20">
                                 {{ $book->category }}
                             </span>
                             @if($book->status === 'available')
@@ -203,13 +203,13 @@
                     </div>
 
                     <!-- Pricing Card -->
-                    <div class="bg-surface-dark rounded-2xl p-6 border border-white/10">
+                    <div class="bg-lib-surf-dark rounded-2xl p-6 border border-white/10">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                             <div class="space-y-4">
                                 @if($book->type == 'rent' || $book->type == 'both')
                                     <div class="flex items-baseline gap-2">
                                         <span
-                                            class="text-3xl font-black text-primary">₹{{ number_format($book->rental_price, 0) }}</span>
+                                            class="text-3xl font-black text-lib-primary">₹{{ number_format($book->rental_price, 0) }}</span>
                                         <span class="text-gray-400 text-sm font-medium">/ {{ $book->rental_duration_days }}
                                             days rental</span>
                                     </div>
@@ -218,7 +218,7 @@
                                 @if($book->type == 'sale' || $book->type == 'both')
                                     <div class="flex items-baseline gap-2">
                                         <span
-                                            class="text-3xl font-black text-secondary">₹{{ number_format($book->selling_price, 0) }}</span>
+                                            class="text-3xl font-black text-lib-secondary">₹{{ number_format($book->selling_price, 0) }}</span>
                                         <span class="text-gray-400 text-sm font-medium">to buy</span>
                                     </div>
                                 @endif
@@ -234,7 +234,7 @@
                                                     <input type="hidden" name="book_id" value="{{ $book->id }}">
                                                     <input type="hidden" name="action" value="rent">
                                                     <button type="submit"
-                                                        class="w-full py-3.5 bg-surface-light border border-primary/20 hover:border-primary/50 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+                                                        class="w-full py-3.5 bg-lib-surf-light border border-lib-primary/20 hover:border-lib-primary/50 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
                                                         <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
                                                         <span>Cart (Rent)</span>
                                                     </button>
@@ -245,7 +245,7 @@
                                                     <input type="hidden" name="action" value="rent">
                                                     <input type="hidden" name="checkout_now" value="1">
                                                     <button type="submit"
-                                                        class="w-full py-3.5 bg-gradient-to-r from-primary to-primary-hover text-white font-bold rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all flex items-center justify-center gap-2">
+                                                        class="w-full py-3.5 bg-gradient-to-r from-lib-primary to-lib-primary-hover text-white font-bold rounded-xl hover:shadow-lg hover:shadow-lib-primary/25 transition-all flex items-center justify-center gap-2">
                                                         <span class="material-symbols-outlined text-lg">key</span>
                                                         <span>Rent Now</span>
                                                     </button>
@@ -253,7 +253,7 @@
                                             </div>
                                         @else
                                             <button disabled
-                                                class="w-full py-3.5 bg-surface-light border border-white/10 text-gray-500 font-bold rounded-xl cursor-not-allowed flex items-center justify-center gap-2">
+                                                class="w-full py-3.5 bg-lib-surf-light border border-white/10 text-gray-500 font-bold rounded-xl cursor-not-allowed flex items-center justify-center gap-2">
                                                 <span class="material-symbols-outlined text-lg">key_off</span>
                                                 <span>Rented Out</span>
                                             </button>
@@ -268,7 +268,7 @@
                                                     <input type="hidden" name="book_id" value="{{ $book->id }}">
                                                     <input type="hidden" name="action" value="buy">
                                                     <button type="submit"
-                                                        class="w-full py-3.5 bg-surface-light border border-white/10 hover:border-white/30 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+                                                        class="w-full py-3.5 bg-lib-surf-light border border-white/10 hover:border-white/30 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
                                                         <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
                                                         <span>Cart (Buy)</span>
                                                     </button>
@@ -279,7 +279,7 @@
                                                     <input type="hidden" name="action" value="buy">
                                                     <input type="hidden" name="checkout_now" value="1">
                                                     <button type="submit"
-                                                        class="w-full py-3.5 bg-gradient-to-r from-secondary to-pink-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-secondary/25 transition-all flex items-center justify-center gap-2">
+                                                        class="w-full py-3.5 bg-gradient-to-r from-lib-secondary to-pink-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-lib-secondary/25 transition-all flex items-center justify-center gap-2">
                                                         <span class="material-symbols-outlined text-lg">shopping_bag</span>
                                                         <span>Buy Now</span>
                                                     </button>
@@ -287,7 +287,7 @@
                                             </div>
                                         @else
                                             <button disabled
-                                                class="w-full py-3.5 bg-surface-light border border-white/10 text-gray-500 font-bold rounded-xl cursor-not-allowed flex items-center justify-center gap-2">
+                                                class="w-full py-3.5 bg-lib-surf-light border border-white/10 text-gray-500 font-bold rounded-xl cursor-not-allowed flex items-center justify-center gap-2">
                                                 <span class="material-symbols-outlined text-lg">production_quantity_limits</span>
                                                 <span>Sold Out</span>
                                             </button>
@@ -346,19 +346,19 @@
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal('authModal')">
         </div>
         <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-surface-dark border border-white/10 rounded-2xl p-6 shadow-2xl transform transition-all scale-100">
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-lib-surf-dark border border-white/10 rounded-2xl p-6 shadow-2xl transform transition-all scale-100">
             <div class="text-center">
-                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 mb-4">
-                    <span class="material-symbols-outlined text-primary text-2xl">lock</span>
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-lib-primary/10 mb-4">
+                    <span class="material-symbols-outlined text-lib-primary text-2xl">lock</span>
                 </div>
                 <h3 class="text-lg font-bold text-white mb-2">Authentication Required</h3>
                 <p class="text-gray-400 text-sm mb-6">Please log in or register to rent or buy books.</p>
                 <div class="flex gap-3">
                     <a href="{{ route('login') }}"
-                        class="flex-1 py-2.5 bg-surface-light hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all text-sm">Log
+                        class="flex-1 py-2.5 bg-lib-surf-light hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all text-sm">Log
                         In</a>
                     <a href="{{ route('register') }}"
-                        class="flex-1 py-2.5 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:shadow-lg hover:shadow-primary/30 transition-all text-sm">Register</a>
+                        class="flex-1 py-2.5 bg-gradient-to-r from-lib-primary to-lib-secondary text-white font-bold rounded-xl hover:shadow-lg hover:shadow-lib-primary/30 transition-all text-sm">Register</a>
                 </div>
             </div>
         </div>
@@ -369,7 +369,7 @@
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onclick="closeModal('profileModal')"></div>
         <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-2xl transform transition-all scale-100">
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-lib-surf-dark border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-2xl transform transition-all scale-100">
             <div class="text-center">
                 <div
                     class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-orange-100 dark:bg-orange-500/10 mb-4">
@@ -386,7 +386,7 @@
                 <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">Please fill these details to continue.</p>
 
                 <a href="{{ route('profile.edit') }}"
-                    class="block w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl shadow-lg hover:shadow-primary/30 transition-all text-sm">
+                    class="block w-full py-2.5 bg-lib-primary hover:bg-lib-primary-hover text-white font-bold rounded-xl shadow-lg hover:shadow-lib-primary/30 transition-all text-sm">
                     Go to Profile
                 </a>
             </div>
@@ -395,7 +395,7 @@
 
     <!-- Back to Top Button -->
     <button id="backToTop"
-        class="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full shadow-2xl hover:shadow-primary/50 transition-all opacity-0 pointer-events-none z-50">
+        class="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-lib-primary to-lib-secondary text-white rounded-full shadow-2xl hover:shadow-lib-primary/50 transition-all opacity-0 pointer-events-none z-50">
         <span class="material-symbols-outlined">arrow_upward</span>
     </button>
 
