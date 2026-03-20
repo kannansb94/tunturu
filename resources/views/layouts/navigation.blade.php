@@ -1,5 +1,8 @@
 <nav x-data="{ open: false }"
     class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 fixed top-0 w-full z-50">
+    @php
+        $panelRole = Auth::check() ? (Auth::user()->role_relation ? Auth::user()->role_relation->slug : Auth::user()->role) : 'admin';
+    @endphp
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -25,7 +28,7 @@
                 @if(Auth::user()->isAdmin())
                     <div class="hidden space-x-6 sm:-my-px sm:ms-10 sm:flex">
                         @if(Auth::user()->hasPermission('manage_books'))
-                            <x-nav-link :href="route('library.admin.books.index')"
+                            <x-nav-link :href="route('library.admin.books.index', ['panel_role' => $panelRole])"
                                 :active="request()->routeIs('library.admin.books.*')">
                                 <div class="flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[20px]">inventory_2</span>
@@ -35,7 +38,7 @@
                         @endif
 
                         @if(Auth::user()->hasPermission('manage_users'))
-                            <x-nav-link :href="route('library.admin.users.index')"
+                            <x-nav-link :href="route('library.admin.users.index', ['panel_role' => $panelRole])"
                                 :active="request()->routeIs('library.admin.users.*')">
                                 <div class="flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[20px]">group</span>
@@ -51,7 +54,7 @@
 
                         <!-- Donations -->
                         @if(Auth::user()->hasPermission('manage_donations'))
-                            <x-nav-link :href="route('library.admin.donations.index')"
+                            <x-nav-link :href="route('library.admin.donations.index', ['panel_role' => $panelRole])"
                                 :active="request()->routeIs('library.admin.donations.*')">
                                 <div class="flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[20px]">volunteer_activism</span>
@@ -61,7 +64,7 @@
                         @endif
 
                         @if(Auth::user()->hasPermission('manage_categories'))
-                            <x-nav-link :href="route('library.admin.categories.index')"
+                            <x-nav-link :href="route('library.admin.categories.index', ['panel_role' => $panelRole])"
                                 :active="request()->routeIs('library.admin.categories.*')">
                                 <div class="flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[20px]">category</span>
@@ -71,7 +74,7 @@
                         @endif
 
                         @if(Auth::user()->hasPermission('manage_rentals'))
-                            <x-nav-link :href="route('library.admin.rentals.index')"
+                            <x-nav-link :href="route('library.admin.rentals.index', ['panel_role' => $panelRole])"
                                 :active="request()->routeIs('library.admin.rentals.*')">
                                 <div class="flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[20px]">key</span>
@@ -81,7 +84,7 @@
                         @endif
 
                         @if(Auth::user()->hasPermission('manage_sales'))
-                            <x-nav-link :href="route('library.admin.sales.index')"
+                            <x-nav-link :href="route('library.admin.sales.index', ['panel_role' => $panelRole])"
                                 :active="request()->routeIs('library.admin.sales.*')">
                                 <div class="flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
@@ -116,7 +119,7 @@
                                 class="px-4 py-2 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
                                 <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Notifications</span>
                                 @if(Auth::user()->unreadNotifications->count() > 0)
-                                    <a href="{{ route('library.admin.notifications.markAllRead') }}"
+                                    <a href="{{ route('library.admin.notifications.markAllRead', ['panel_role' => $panelRole]) }}"
                                         class="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">Mark
                                         all read</a>
                                 @endif
@@ -127,7 +130,7 @@
                                     $notifications = Auth::user()->notifications;
                                 @endphp
                                 @forelse($notifications as $notification)
-                                    <a href="{{ route('library.admin.notifications.markRead', $notification->id) }}"
+                                    <a href="{{ route('library.admin.notifications.markRead', ['panel_role' => $panelRole, 'id' => $notification->id]) }}"
                                         class="block px-4 py-3 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150 ease-in-out {{ $notification->read_at ? 'opacity-75' : 'bg-blue-50/50 dark:bg-blue-900/10' }}">
                                         <div class="flex items-start">
                                             <div class="shrink-0 pt-0.5">
@@ -227,7 +230,7 @@
             <!-- Admin Mobile Links -->
             @if(Auth::user()->isAdmin())
                 @if(Auth::user()->hasPermission('manage_books'))
-                    <x-responsive-nav-link :href="route('library.admin.books.index')"
+                    <x-responsive-nav-link :href="route('library.admin.books.index', ['panel_role' => $panelRole])"
                         :active="request()->routeIs('library.admin.books.*')">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">inventory_2</span>
@@ -237,7 +240,7 @@
                 @endif
 
                 @if(Auth::user()->hasPermission('manage_users'))
-                    <x-responsive-nav-link :href="route('library.admin.users.index')"
+                    <x-responsive-nav-link :href="route('library.admin.users.index', ['panel_role' => $panelRole])"
                         :active="request()->routeIs('library.admin.users.*')">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">group</span>
@@ -247,7 +250,7 @@
                 @endif
 
                 @if(Auth::user()->hasPermission('manage_donations'))
-                    <x-responsive-nav-link :href="route('library.admin.donations.index')"
+                    <x-responsive-nav-link :href="route('library.admin.donations.index', ['panel_role' => $panelRole])"
                         :active="request()->routeIs('library.admin.donations.*')">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">volunteer_activism</span>
@@ -257,7 +260,7 @@
                 @endif
 
                 @if(Auth::user()->hasPermission('manage_categories'))
-                    <x-responsive-nav-link :href="route('library.admin.categories.index')"
+                    <x-responsive-nav-link :href="route('library.admin.categories.index', ['panel_role' => $panelRole])"
                         :active="request()->routeIs('library.admin.categories.*')">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">category</span>
@@ -267,7 +270,7 @@
                 @endif
 
                 @if(Auth::user()->hasPermission('manage_rentals'))
-                    <x-responsive-nav-link :href="route('library.admin.rentals.index')"
+                    <x-responsive-nav-link :href="route('library.admin.rentals.index', ['panel_role' => $panelRole])"
                         :active="request()->routeIs('library.admin.rentals.*')">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">key</span>
@@ -277,7 +280,7 @@
                 @endif
 
                 @if(Auth::user()->hasPermission('manage_sales'))
-                    <x-responsive-nav-link :href="route('library.admin.sales.index')"
+                    <x-responsive-nav-link :href="route('library.admin.sales.index', ['panel_role' => $panelRole])"
                         :active="request()->routeIs('library.admin.sales.*')">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">point_of_sale</span>
