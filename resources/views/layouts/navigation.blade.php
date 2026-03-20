@@ -123,7 +123,10 @@
                             </div>
 
                             <div class="max-h-64 overflow-y-auto">
-                                @forelse(Auth::user()->notifications as $notification)
+                                @php
+                                    $notifications = Auth::user()->notifications;
+                                @endphp
+                                @forelse($notifications as $notification)
                                     <a href="{{ route('library.admin.notifications.markRead', $notification->id) }}"
                                         class="block px-4 py-3 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150 ease-in-out {{ $notification->read_at ? 'opacity-75' : 'bg-blue-50/50 dark:bg-blue-900/10' }}">
                                         <div class="flex items-start">
