@@ -19,12 +19,12 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#a855f7",
-                        "primary-hover": "#9333ea",
-                        "secondary": "#ec4899",
-                        "background-dark": "#0a0a0f",
-                        "surface-dark": "#1a1a24",
-                        "surface-light": "#252535",
+                        "lib-primary": "#a855f7",
+                        "lib-primary-hover": "#9333ea",
+                        "lib-secondary": "#ec4899",
+                        "lib-bg-dark": "#0a0a0f",
+                        "lib-surf-dark": "#1a1a24",
+                        "lib-surf-light": "#252535",
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"]
